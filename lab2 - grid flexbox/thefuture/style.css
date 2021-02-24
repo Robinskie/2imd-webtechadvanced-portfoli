@@ -29,3 +29,10 @@
 .item.yellow {
     background-color: #FFFF04;
 }
+
+@media (min-width: 600px) {
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
