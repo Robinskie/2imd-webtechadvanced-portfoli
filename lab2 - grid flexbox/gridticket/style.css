@@ -20,6 +20,7 @@ body {
     align-items: center;
     background-image: url('bg-festival.jpg');
     background-size: cover;
+    background-position: center;
 }
 
 .ticket-container {
