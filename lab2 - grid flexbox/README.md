@@ -1,5 +1,5 @@
 # Lab 2
-Link naar Codepen THE FUTURE: https://codepen.io/Robinskie/pen/rNWpBVo \
+Link naar Codepen THE FUTURE: https://codepen.io/Robinskie/pen/rNWpBVo
 
 Link naar Codepen WEAREIMD Grid Ticket: https://codepen.io/Robinskie/pen/vYypOZy
 
