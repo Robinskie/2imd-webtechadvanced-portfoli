@@ -15,6 +15,11 @@ body {
     font-family: sans-serif;
     text-transform: uppercase;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('bg-festival.jpg');
+    background-size: cover;
 }
 
 .ticket-container {
@@ -23,8 +28,6 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 100px 1fr 100px;
-    background-image: url('bg-festival.jpg');
-    background-size: cover;
 }
 
 .ticket-header {
@@ -81,4 +84,63 @@ body {
 
 .ticket-disclaimer {
     display: none;
+}
+
+@media (min-width: 640px) {
+    body {
+        padding: 8px;
+    }
+
+    .ticket-container {
+        height: 300px;
+        grid-template-columns: 1fr 300px;
+        grid-template-rows: 1fr 30%;
+    }
+
+    .ticket-header {
+        flex-direction: column-reverse;
+        gap: 24px;
+        grid-column: 1/2;
+        grid-row: 1/2;
+        background-color: transparent;
+        color: black;
+        border: 1px solid black;
+    }
+
+    .ticket-header, .qr-container {
+        border: 1px solid black;
+    }
+
+    .qr-container {
+        grid-column: 2/3;
+        grid-row: 1/3;
+    }
+
+    .ticket-info {
+        grid-column: 1/2;
+        grid-row: 2/3;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1.5fr 1fr;
+    }
+
+    .ticket-date, .ticket-one, .ticket-price {
+        font-size: 1.4em;
+    }
+
+    .ticket-price {
+        grid-column: 3/4;
+        grid-row: 1/2;
+    }
+
+    .ticket-disclaimer {
+        grid-column: 1/4;
+        grid-row: 2/3;
+    }
+
+    .ticket-disclaimer {
+        display: flex;
+        font-weight: normal;
+        text-transform: none;
+        letter-spacing: normal;
+    }
 }
