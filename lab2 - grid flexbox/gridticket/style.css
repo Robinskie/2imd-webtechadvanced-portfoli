@@ -107,6 +107,15 @@ body {
         border: 1px solid black;
     }
 
+    .ticket-header h1 {
+        font-size: 7vw;
+    }
+
+    .ticket-header h2 {
+        font-size: 0.8em;
+    }
+    
+
     .ticket-header, .qr-container {
         border: 1px solid black;
     }
