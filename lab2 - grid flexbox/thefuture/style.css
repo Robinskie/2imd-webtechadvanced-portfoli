@@ -36,3 +36,21 @@
         grid-template-columns: 1fr 1fr;
     }
 }
+
+@media (min-width: 1200px) {
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(3, 200px);
+    }
+
+    .item.cyan {
+        grid-column: 3/4;
+        grid-row: 1/4;
+    }
+
+    .item.yellow {
+        grid-column: 4/6;
+        grid-row: 2/4;
+    }
+}
