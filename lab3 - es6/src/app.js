@@ -28,7 +28,7 @@ class Note {
       // if you want to store arrays, look at JSON.parse and JSON.stringify
 
       let _storage = JSON.parse(localStorage.getItem('lab3-notes'));
-      _storage.push(this);
+      _storage.push(this.title);
       localStorage.setItem('lab3-notes', JSON.stringify(_storage));
     }
   
@@ -39,6 +39,10 @@ class Note {
       // remove the item from screen and from localstorage
 
       document.querySelector('#taskList').removeChild(this);
+
+      let _storage = JSON.parse(localStorage.getItem('lab3-notes'));
+      _storage.splice(_storage.indexOf(this.title), 1);
+      localStorage.setItem('lab3-notes', JSON.stringify(_storage));
     }
   }
   
@@ -63,10 +67,10 @@ class Note {
       // HINT🤩
       // load all notes from storage here and add them to the screen
       if(localStorage.getItem('lab3-notes') !== null) {
-          let notes = JSON.parse(localStorage.getItem('lab3-notes'));
-          notes.map(note => {
-              note = new Note(note.title);
-              note.add();
+          let _storage = JSON.parse(localStorage.getItem('lab3-notes'));
+          _storage.map(note => {
+            note = new Note(note);
+            note.add();
           });
       } else {
           localStorage.setItem('lab3-notes', '[]');

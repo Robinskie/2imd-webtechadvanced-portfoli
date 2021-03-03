@@ -18,29 +18,45 @@ var Note = /*#__PURE__*/function () {
   _createClass(Note, [{
     key: "createElement",
     value: function createElement(title) {
-      var newNote = document.createElement("li"); // HINT🤩 newNote.addEventListener('click', this.remove.bind(newNote));
+      var newNote = document.createElement("li");
+      newNote.innerHTML = title; // HINT🤩 newNote.addEventListener('click', this.remove.bind(newNote));
 
-      newNote.innerHTML = title;
-      document.querySelector('#taskList').append(newNote);
+      newNote.addEventListener('click', this.remove.bind(newNote));
       return newNote;
     }
   }, {
     key: "add",
-    value: function add() {// HINT🤩
+    value: function add() {
+      // HINT🤩
       // this function should append the note to the screen somehow
+      document.querySelector('#taskList').append(this.element);
     }
   }, {
     key: "saveToStorage",
-    value: function saveToStorage() {// HINT🤩
+    value: function saveToStorage() {
+      // HINT🤩
       // localStorage only supports strings, not arrays
       // if you want to store arrays, look at JSON.parse and JSON.stringify
+      var _storage = JSON.parse(localStorage.getItem('lab3-notes'));
+
+      _storage.push(this.title);
+
+      localStorage.setItem('lab3-notes', JSON.stringify(_storage));
     }
   }, {
     key: "remove",
-    value: function remove() {// HINT🤩 the meaning of 'this' was set by bind() in the createElement function
+    value: function remove() {
+      // HINT🤩 the meaning of 'this' was set by bind() in the createElement function
       // in this function, 'this' will refer to the current note element
       // .removeChild(this)
       // remove the item from screen and from localstorage
+      document.querySelector('#taskList').removeChild(this);
+
+      var _storage = JSON.parse(localStorage.getItem('lab3-notes'));
+
+      _storage.splice(_storage.indexOf(this.title), 1);
+
+      localStorage.setItem('lab3-notes', JSON.stringify(_storage));
     }
   }]);
 
@@ -66,8 +82,19 @@ var App = /*#__PURE__*/function () {
 
   _createClass(App, [{
     key: "loadNotesFromStorage",
-    value: function loadNotesFromStorage() {// HINT🤩
+    value: function loadNotesFromStorage() {
+      // HINT🤩
       // load all notes from storage here and add them to the screen
+      if (localStorage.getItem('lab3-notes') !== null) {
+        var _storage = JSON.parse(localStorage.getItem('lab3-notes'));
+
+        _storage.map(function (note) {
+          note = new Note(note);
+          note.add();
+        });
+      } else {
+        localStorage.setItem('lab3-notes', '[]');
+      }
     }
   }, {
     key: "createNote",
