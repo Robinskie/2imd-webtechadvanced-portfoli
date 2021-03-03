@@ -4,7 +4,6 @@ class Note {
       // HINT🤩 this.element = this.createElement(title);
 
       this.element = this.createElement(title);
-      this.add();
     }
   
     createElement(title) {
@@ -27,6 +26,10 @@ class Note {
       // HINT🤩
       // localStorage only supports strings, not arrays
       // if you want to store arrays, look at JSON.parse and JSON.stringify
+
+      let _storage = JSON.parse(localStorage.getItem('lab3-notes'));
+      _storage.push(this);
+      localStorage.setItem('lab3-notes', JSON.stringify(_storage));
     }
   
     remove() {
@@ -59,6 +62,15 @@ class Note {
     loadNotesFromStorage() {
       // HINT🤩
       // load all notes from storage here and add them to the screen
+      if(localStorage.getItem('lab3-notes') !== null) {
+          let notes = JSON.parse(localStorage.getItem('lab3-notes'));
+          notes.map(note => {
+              note = new Note(note.title);
+              note.add();
+          });
+      } else {
+          localStorage.setItem('lab3-notes', '[]');
+      }
     }
   
     createNote(e) {
