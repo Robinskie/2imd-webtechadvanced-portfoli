@@ -4,14 +4,15 @@ class Note {
       // HINT🤩 this.element = this.createElement(title);
 
       this.element = this.createElement(title);
+      this.add();
     }
   
     createElement(title) {
       let newNote = document.createElement("li");
+      newNote.innerHTML = title;
   
       // HINT🤩 newNote.addEventListener('click', this.remove.bind(newNote));
-      newNote.innerHTML = title;
-      document.querySelector('#taskList').append(newNote);
+      newNote.addEventListener('click', this.remove.bind(newNote));
   
       return newNote;
     }
@@ -19,6 +20,7 @@ class Note {
     add() {
       // HINT🤩
       // this function should append the note to the screen somehow
+      document.querySelector('#taskList').append(this.element);
     }
   
     saveToStorage() {
@@ -32,6 +34,8 @@ class Note {
       // in this function, 'this' will refer to the current note element
       // .removeChild(this)
       // remove the item from screen and from localstorage
+
+      document.querySelector('#taskList').removeChild(this);
     }
   }
   
