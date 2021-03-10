@@ -1,4 +1,5 @@
-const weather
+const weatherOutput = document.querySelector("#weatherOutput");
+const weatherComment = document.querySelector("#weatherComment");
 
 class App {
     constructor() {
@@ -36,8 +37,42 @@ class Weather {
             .then(response => response.json())
             .then(data => {
                 this.data = data;
-                console.log(this.getState());
+
+                console.log(this.getTemperature());
+
+                let weatherOutputText = "";
+                let weatherCommentText = "";
+                // Temperatures
+                if(this.getTemperature() < 10) {
+                    weatherOutputText = "a little chilly";
+                    weatherCommentText = "enjoying the cold";
+                } else if(this.getTemperature() < 20) {
+                    weatherOutputText = "like nice spring weather";
+                    weatherCommentText = "enjoying a picnic";
+                } else {
+                    weatherOutputText = "a little hot";
+                    weatherCommentText = "enjoying the scorching heat";
+                }
+
+                // Overcast
+                if(this.getState() == "Clouds") {
+                    weatherOutputText = "a little overcast";
+                    weatherCommentText = "cloudgazing";
+                }
+
+                // Raining
+                if(this.getState() == "Thunderstorm" || (this.getState() == "Drizzle") || (this.getState() == "Rain")) {
+                    weatherOutputText = "rainy";
+                    weatherCommentText = "watching the raindrops";
+                }
+
+                weatherOutput.innerHTML = weatherOutputText;
+                weatherComment.innerHTML = weatherCommentText;
             });
+    }
+
+    getTemperature() {
+        return this.data.main.temp - 273.15;
     }
 
     getState() {
