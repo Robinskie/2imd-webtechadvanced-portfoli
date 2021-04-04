@@ -3,18 +3,27 @@ var router = express.Router();
 
 // GET all messages
 router.get('/', (req, res, next) => {
-  let data = {
-    success: true,
-    messages: [
-      { message: 'Getting messages' },
-    ],
-  };
+  let data = {}
+
+  if(req.query.user == undefined) {
+    console.log('not fired');
+    data = {
+      success: true,
+      message: 'Getting all messages',
+    };
+  } else {
+    console.log('fired');
+    data = {
+      success: true,
+      message: `Getting messages from user ${req.query.user}`,
+    };
+  }
   res.send(data);
 });
 
 // GET message with ID
 router.get('/:id', (req, res, next) => {
-  let data = {}
+  let data = {};
 
   if(req.params.id < 0) {
     data = {
